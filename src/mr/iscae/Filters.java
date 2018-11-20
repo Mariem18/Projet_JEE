@@ -1,8 +1,9 @@
 package mr.iscae;
 
 import java.io.IOException;
-
 import javax.servlet.*;
+import javax.servlet.ServletException;
+
 
 public class Filters implements Filter{
 
@@ -14,7 +15,7 @@ public class Filters implements Filter{
 
 	@Override
 	public void doFilter(ServletRequest reqt, ServletResponse resp, FilterChain chain)
-			throws IOException, ServletException {
+			throws IOException, ServletException{
 		chain.doFilter(reqt, resp);
 		
 	}
