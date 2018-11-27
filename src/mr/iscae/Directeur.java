@@ -1,9 +1,10 @@
 package mr.iscae;
 
-
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -16,15 +17,19 @@ public class Directeur {
 	String nomDirGeneral;
 	Integer idDirEtude;
 	String nomDirEtude;
+
 	
-	
-	private static  Map<String, String> info_mat= new HashMap<>();
-	@PUT
-	//@Path("/ajouterMat")
-	public void ajouterMat(Matiere  mat ){
-		info_mat.put(mat.nom,mat.creneau);
+    private  static  Set<Map<String, String>> info_matiere= new HashSet<>();  
+    
+    @PUT
+	public void ajouterMat(Enseignant  eng){
+		info_matiere.add(eng.info_mat);
 	}
-	
-	
-	
+    
+     
+    @GET
+	public  Set<Map<String, String>> getvalue(){
+		return info_matiere;
+
+	}
 }
