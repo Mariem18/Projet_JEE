@@ -2,9 +2,13 @@ package mr.iscae;
 
 import javax.ws.rs.GET;
 
+
+
+
 import javax.ws.rs.PUT; 
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,10 +20,13 @@ import java.util.Map;
 public class Administrateur {
 
 	
-	private static  Map<Integer, String> info_dir_general= new HashMap<>();
-	private static  Map<Integer, String> info_dir_etude= new HashMap<>();
-	private static  Map<Map<String,  String >,String> info_ensg= new HashMap<>();
+	
+	private static  List<String> info_dir_general= new ArrayList<>(); 
+	private static  List<String> info_dir_etude= new ArrayList<>(); 
+	private static  Map<String ,Map<String,String>> info_ensg = new HashMap<>();
 	private static  List<String> mdp= new ArrayList<>();
+	
+	
 	
 	
 	@PUT
@@ -31,27 +38,30 @@ public class Administrateur {
 	@PUT
 	@Path("/ajouterDirG")
 	public void ajouterDirG(Directeur dir ){
-		info_dir_general.put(dir.idDirGeneral,dir.nomDirGeneral);
+		info_dir_general.add(dir.nomDirGeneral);
 	}
 	
 	@PUT
 	@Path("/ajouterDirE")
 	public void ajouterDirE(Directeur dir ){
-		info_dir_etude.put(dir.idDirEtude,dir.nomDirEtude);
+		info_dir_etude.add(dir.nomDirEtude);
 	}
+	
 	@PUT
 	@Path("/ajouterEnsg")
 	public void ajouterEnsg(Enseignant  eng){
 		//"info_mat" contient les infos des  matiere "noms et creneaux"
 		//nomEnsg nom de l'enseignant 
-		info_ensg.put(eng.info_mat,eng.nomEnsg);
+		info_ensg.put(eng.nomEnsg,eng.info_matiere);
+		info_ensg.pu
+		
 		}
 	
 	
 	 @GET
-	  @Path("/affDirecteurG")
+	 @Path("/affDirecteurG")
 	  //pour afficher les infos des directeurs generales
-		public Map<Integer,String> getvalue1(){
+		public List<String> getvalue1(){
 			return info_dir_general;
 	  }
 	 
@@ -59,16 +69,17 @@ public class Administrateur {
 	 @GET
 	  @Path("/affDirecteurE")
 	  //pour afficher les infos des directeurs d'etudes
-		public  Map<Integer,  String > getvalue2(){
+		public  List<String > getvalue2(){
 		 return info_dir_etude;
 	  }
 	 
 	 
-	  @GET
+	 @GET
 	  @Path("/affEnseignant")
-	  //pour afficher les infos des enseignants
-		public Map<Map<String,  String >,String> getvalue3(){
+	//  pour afficher les infos des enseignants
+	   public Map<String, Map<String,  String >> getvalue3(){
 			return info_ensg;
-	  }
-	
+	 } 
+	  
 }
+

@@ -1,6 +1,8 @@
 package mr.iscae;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -13,23 +15,22 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 public class Directeur {
 
-	Integer idDirGeneral;
+	
 	String nomDirGeneral;
-	Integer idDirEtude;
 	String nomDirEtude;
 
 	
-    private  static  Set<Map<String, String>> info_matiere= new HashSet<>();  
+    private  static  Set<Map<String, String>>  info_mat= new HashSet<>();  
     
     @PUT
-	public void ajouterMat(Enseignant  eng){
-		info_matiere.add(eng.info_mat);
+	public void ajouterMat(Enseignant ensg){
+		info_mat.add(ensg.info_matiere); 
 	}
     
      
     @GET
-	public  Set<Map<String, String>> getvalue(){
-		return info_matiere;
+	public  Set<Map<String, String>>  getvalue(){
+		return info_mat;
 
 	}
 }
